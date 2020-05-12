@@ -7,22 +7,26 @@
     }
 
     body{
-        background-color:darkslategray;
+        background-color:rgba(0, 0, 0, 0.856);
         background-position: center;
         background-size: cover;
     }
 
     #bgImg{
-        background-image: ;
-        background-color: rgb(50, 250, 0);
+        background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
         height: 100%;
         width: 100%;
+        z-index: -1;
+        filter: blur(5px) grayscale(40%);
+        position: absolute;
+        background-position: center;
+        background-size: cover;
     }
 
     .unblur {
         position:absolute;
         top: 0;
-        left: ;
+        left: 0;
     }
 
     .wrapper {
@@ -37,21 +41,23 @@
     .box{
         height: 400px;
         width: 600px;
-        background-color: rgba(88, 88, 88, 0.329);
+        background-color: rgba(56, 56, 56, 0.63);
         background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        border: 1.5px solid rgb(27, 27, 27);
+        border: 3px solid rgb(27, 27, 27);
         justify-content: space-between;
         align-items: center;
         display: flex;
-        
+        box-shadow: inset 0px 0px 100px rgba(0,0,0,0.4);
+        box-shadow: 0px 0px 20px 5px black;
 
     }
     
     .navButtons{
         background-color: rgba(245, 245, 245, 0.322);
+        border: 1px solid rgba(20, 20, 20, 0.801);
         height: 50px;
 
 
@@ -74,10 +80,10 @@
     <title>Image Slider</title>
 </head>
 <body>
-
+    <div id="bgImg"></div>
     <div class="wrapper">
-        <div class="box">
-            <button class="navButtons" id="leftNav"><</button>
+        <div class="box" id="slider">
+            <button class="navButtons" id="leftNav" onclick="previousImg()"><</button>
             <button class="navButtons" id="rightNav" onclick="nextImg()">></button>
         </div>
 
