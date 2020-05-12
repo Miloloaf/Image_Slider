@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body{
+        background-color:darkslategray;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #bgImg{
+        background-image: ;
+        background-color: rgb(50, 250, 0);
+        height: 100%;
+        width: 100%;
+    }
+
+    .unblur {
+        position:absolute;
+        top: 0;
+        left: ;
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+
+    }
+
+    .box{
+        height: 400px;
+        width: 600px;
+        background-color: rgba(88, 88, 88, 0.329);
+        background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 1.5px solid rgb(27, 27, 27);
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        
+
+    }
+    
+    .navButtons{
+        background-color: rgba(245, 245, 245, 0.322);
+        height: 50px;
+
+
+    }
+
+    #leftNav{
+        margin-left:  -25px;
+    }
+
+    #rightNav{
+        margin-right:  -25px;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="image_slider.js"></script>
+    <title>Image Slider</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="box">
+            <button class="navButtons" id="leftNav"><</button>
+            <button class="navButtons" id="rightNav" onclick="nextImg()">></button>
+        </div>
+
+    </div>
+
+</body>
+</html>
