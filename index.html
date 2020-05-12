@@ -21,6 +21,12 @@
         position: absolute;
         background-position: center;
         background-size: cover;
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+    }
+
+    .fade {
+        opacity: 0;
     }
 
     .unblur {
@@ -42,17 +48,33 @@
         height: 400px;
         width: 600px;
         background-color: rgba(56, 56, 56, 0.63);
-        background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
+
         border: 3px solid rgb(27, 27, 27);
         justify-content: space-between;
         align-items: center;
         display: flex;
         box-shadow: inset 0px 0px 100px rgba(0,0,0,0.4);
         box-shadow: 0px 0px 20px 5px black;
+        overflow: hidden;
+        position: relative;
+        /* background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat; */
 
+    }
+
+    #slider{
+        background-image: url("https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 400px;
+        width: 600px;
+        display: flex;
+        position: absolute;
+        left: 0px;
+        z-index: 0;
     }
     
     .navButtons{
@@ -71,6 +93,20 @@
         margin-right:  -25px;
     }
 
+    .navigation{
+        
+    }
+
+    .navPips {
+        height: 100px;
+        width: 100px;
+        background-color: black;
+        z-index: 2;
+        position: absolute;
+
+    }
+
+
 </style>
 
 <head>
@@ -81,12 +117,18 @@
 </head>
 <body>
     <div id="bgImg"></div>
-    <div class="wrapper">
-        <div class="box" id="slider">
-            <button class="navButtons" id="leftNav" onclick="previousImg()"><</button>
-            <button class="navButtons" id="rightNav" onclick="nextImg()">></button>
+    <div class="wrapper">            
+        <button class="navButtons" id="leftNav" onclick="previousImg()"><</button>
+        <div class="box">
+            
+            <div id="slider"></div>
+            <div class="navigation">
+                <div class="navPips"></div>
+            </div>
+            
         </div>
-
+        <button class="navButtons" id="rightNav" onclick="nextImg()">></button>
+        <!-- <button class="navButtons" id="rightNav" onclick="nextImg(); transition()">></button> -->
     </div>
 
 </body>

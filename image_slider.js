@@ -13,35 +13,81 @@ const images = {
 
 
 function nextImg() {
-    imageNum+= 1
 
+    transitionRLOut()
+
+    imageNum+= 1
     if (imageNum > Object.keys(images).length) {
         imageNum = 1
     }
-
     let n = imageNum.toString()
     let newImg = "image"+ n
 
+    bgFade(300)
+
+    setTimeout(function() {
     document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
     document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
+    }, 200)
+
+    setTimeout(function() {
+        transitionIn()
+    }, 300)
+
 }
 
 function previousImg() {
+
+    transitionLROut()
+
     imageNum -= 1
     if (imageNum < 1) {
         imageNum = Object.keys(images).length
     }
-
-
     let newImg = "image" + imageNum.toString()
 
-    document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
-    document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
+    bgFade(300)
+
+    setTimeout(function() {
+        document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
+        document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
+    }, 200)
+
+    setTimeout(function() {
+        transitionIn()
+    }, 300)
+
 }
 
-function transition() {
-    document.getElementById("slider").style.transition = "1s";
-    
-    
+function transitionRLOut() {
+    document.getElementById("slider").style.transition = "0.5s ease";
+    document.getElementById("slider").style.left = "-800px";
+    setTimeout(function() {
+        document.getElementById("slider").style.transition = null;
+        document.getElementById("slider").style.left = "800px"
+    }, 100)
+}
 
+function transitionIn() {
+    document.getElementById("slider").style.transition = "0.5s ease";
+    document.getElementById("slider").style.left = "0px";
+}
+
+function transitionLROut() {
+    document.getElementById("slider").style.transition = "0.5s ease";
+    document.getElementById("slider").style.left = "800px";
+    setTimeout(function() {
+        document.getElementById("slider").style.transition = null;
+        document.getElementById("slider").style.left = "-800px"
+    }, 100)
+}
+
+
+function bgFade(timer) {
+    document.getElementById("bgImg").style.opacity = "0";
+
+    setTimeout(function() {
+        document.getElementById("bgImg").style.opacity = "1";
+    }, timer)
+    
 }
