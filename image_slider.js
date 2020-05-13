@@ -1,6 +1,5 @@
 
 const navPips = document.querySelectorAll(".navPips")
-
 const images = {
     image1: "https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80",
     image2: "https://images.unsplash.com/photo-1504669221159-56caf7b07f57?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80",
@@ -14,63 +13,42 @@ let imageNum = 1
 
 function nextImg() {
 
-    transitionRLOut()
+    transitionOut("-800px", "800px")
 
     imageNum+= 1
+    //Loops around if last image
     if (imageNum > Object.keys(images).length) {
         imageNum = 1
     }
-    let n = imageNum.toString()
-    let newImg = "image"+ n
+    let newImg = "image"+ imageNum.toString()
 
-    bgFade(300)
-
-    setTimeout(function() {
-    document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
-    document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
-    }, 200)
-
-    setTimeout(function() {
-        transitionIn()
-    }, 300)
-
-    navPips.forEach(pip => pip.classList.remove("filledin"))
-    navPips[imageNum -1].classList.add("filledin")
+    updateIn(newImg)
+    updatePips(imageNum)
 
 }
 
 function previousImg() {
 
-    transitionLROut()
+    transitionOut("800px", "-800px")
 
     imageNum -= 1
+    // Loops around if first image
     if (imageNum < 1) {
         imageNum = Object.keys(images).length
     }
     let newImg = "image" + imageNum.toString()
 
-    bgFade(300)
-
-    setTimeout(function() {
-        document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
-        document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
-    }, 200)
-
-    setTimeout(function() {
-        transitionIn()
-    }, 300)
-
-    navPips.forEach(pip => pip.classList.remove("filledin"))
-    navPips[imageNum -1].classList.add("filledin")
+    updateIn(newImg)
+    updatePips(imageNum)
 
 }
 
-function transitionRLOut() {
+function transitionOut(flyOut, flyIn) {
     document.getElementById("slider").style.transition = "0.5s ease";
-    document.getElementById("slider").style.left = "-800px";
+    document.getElementById("slider").style.left = flyOut;
     setTimeout(function() {
         document.getElementById("slider").style.transition = null;
-        document.getElementById("slider").style.left = "800px"
+        document.getElementById("slider").style.left = flyIn;
     }, 100)
 }
 
@@ -78,16 +56,6 @@ function transitionIn() {
     document.getElementById("slider").style.transition = "0.5s ease";
     document.getElementById("slider").style.left = "0px";
 }
-
-function transitionLROut() {
-    document.getElementById("slider").style.transition = "0.5s ease";
-    document.getElementById("slider").style.left = "800px";
-    setTimeout(function() {
-        document.getElementById("slider").style.transition = null;
-        document.getElementById("slider").style.left = "-800px"
-    }, 100)
-}
-
 
 function bgFade(timer) {
     document.getElementById("bgImg").style.opacity = "0";
@@ -98,26 +66,31 @@ function bgFade(timer) {
     
 }
 
-function testfill() {
-    // navPips.forEach(pip => pip.className = "filledin")
-    // document.getElementsByClassName("navPips").classList.add("filledin");
+function pipClick() {
+    // Removes previously selected pip Fill
     navPips.forEach(pip => pip.classList.remove("filledin"));
+
     let previousNum = imageNum
     imageNum = Number(this.getAttribute("image-index"));
     let newImg = "image" + imageNum.toString()
     navPips[imageNum -1].classList.add("filledin");
 
+    // No Effects if selecting same pip
     if (previousNum == imageNum) {
         return
     }
 
+    // Pip Animations
     if (previousNum < imageNum){
-            transitionRLOut()
+            transitionOut("-800px", "800px")
     }  else {
-            transitionLROut()
+            transitionOut("800px", "-800px")
     }
 
+    updateIn(newImg)
+}
 
+function updateIn(newImg) {
     bgFade(300)
 
     setTimeout(function() {
@@ -128,11 +101,11 @@ function testfill() {
     setTimeout(function() {
         transitionIn()
     }, 300)
-
-
-
-    // document.getElementById("pip2").classList.add("filledin");
 }
 
-navPips.forEach(pip => pip.addEventListener("click", testfill));
-// document.getElementById("pip2").addEventListener("click", testfill);
+function updatePips(imageNum) {
+    navPips.forEach(pip => pip.classList.remove("filledin"))
+    navPips[imageNum -1].classList.add("filledin")
+}
+
+navPips.forEach(pip => pip.addEventListener("click", pipClick));
