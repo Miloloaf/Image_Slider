@@ -102,11 +102,21 @@ function testfill() {
     // navPips.forEach(pip => pip.className = "filledin")
     // document.getElementsByClassName("navPips").classList.add("filledin");
     navPips.forEach(pip => pip.classList.remove("filledin"));
-    let imageNum = Number(this.getAttribute("image-index"));
+    let previousNum = imageNum
+    imageNum = Number(this.getAttribute("image-index"));
     let newImg = "image" + imageNum.toString()
     navPips[imageNum -1].classList.add("filledin");
 
-    transitionRLOut()
+    if (previousNum == imageNum) {
+        return
+    }
+
+    if (previousNum < imageNum){
+            transitionRLOut()
+    }  else {
+            transitionLROut()
+    }
+
 
     bgFade(300)
 
