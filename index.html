@@ -50,7 +50,7 @@
         background-color: rgba(56, 56, 56, 0.63);
 
         border: 3px solid rgb(27, 27, 27);
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         display: flex;
         box-shadow: inset 0px 0px 100px rgba(0,0,0,0.4);
@@ -94,25 +94,42 @@
     }
 
     .navigation{
-        
+
+        background-color ;
+        color: rgb(255, 192, 203);
+        height: 200px;
+        width: 2000px;
+        position: relative;
+        /* top: 270px; */
+        justify-content: center;
+        transform: rotate(270deg);
+        left: -110px;
+        top: -70px;
     }
 
     .navPips {
-        height: 100px;
-        width: 100px;
-        background-color: black;
+        height: 70px;
+        width: 15px;
+        background-color: none;
+        border: 1.5px solid rgba(245, 245, 245, 0.61);
         z-index: 2;
-        position: absolute;
-
+        margin-bottom: 10px;
+        transition: 0.5s ease-in-out;
+    }
+    .navPips.filledin{
+                background-color: rgb(190, 190, 190);
     }
 
+    .filledin {
+        background-color: plum;
+    }
 
 </style>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="image_slider.js"></script>
+
     <title>Image Slider</title>
 </head>
 <body>
@@ -122,14 +139,18 @@
         <div class="box">
             
             <div id="slider"></div>
-            <div class="navigation">
-                <div class="navPips"></div>
-            </div>
+            <ul class="navigation">
+                <li class="navPips filledin" image-index="1"></li>
+                <li class="navPips" image-index="2" id="pip2"></li>
+                <li class="navPips" image-index="3" id="pip3"></li>
+                <li class="navPips" image-index="4"></li>
+                <li class="navPips" image-index="5"></li>
+            </ul>
             
         </div>
         <button class="navButtons" id="rightNav" onclick="nextImg()">></button>
         <!-- <button class="navButtons" id="rightNav" onclick="nextImg(); transition()">></button> -->
     </div>
-
+    <script src="image_slider.js"></script>
 </body>
 </html>

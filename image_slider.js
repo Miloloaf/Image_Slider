@@ -1,6 +1,5 @@
-var image2 ="https://images.unsplash.com/photo-1504669221159-56caf7b07f57?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
 
-let imageNum = 1
+const navPips = document.querySelectorAll(".navPips")
 
 const images = {
     image1: "https://images.unsplash.com/photo-1589045662554-85bd4ab083a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80",
@@ -11,6 +10,7 @@ const images = {
 
 }
 
+let imageNum = 1
 
 function nextImg() {
 
@@ -34,6 +34,9 @@ function nextImg() {
         transitionIn()
     }, 300)
 
+    navPips.forEach(pip => pip.classList.remove("filledin"))
+    navPips[imageNum -1].classList.add("filledin")
+
 }
 
 function previousImg() {
@@ -56,6 +59,9 @@ function previousImg() {
     setTimeout(function() {
         transitionIn()
     }, 300)
+
+    navPips.forEach(pip => pip.classList.remove("filledin"))
+    navPips[imageNum -1].classList.add("filledin")
 
 }
 
@@ -91,3 +97,32 @@ function bgFade(timer) {
     }, timer)
     
 }
+
+function testfill() {
+    // navPips.forEach(pip => pip.className = "filledin")
+    // document.getElementsByClassName("navPips").classList.add("filledin");
+    navPips.forEach(pip => pip.classList.remove("filledin"));
+    let imageNum = Number(this.getAttribute("image-index"));
+    let newImg = "image" + imageNum.toString()
+    navPips[imageNum -1].classList.add("filledin");
+
+    transitionRLOut()
+
+    bgFade(300)
+
+    setTimeout(function() {
+    document.getElementById("bgImg").style.backgroundImage = "url("+images[newImg]+")";
+    document.getElementById("slider").style.backgroundImage = "url("+images[newImg]+")";
+    }, 200)
+
+    setTimeout(function() {
+        transitionIn()
+    }, 300)
+
+
+
+    // document.getElementById("pip2").classList.add("filledin");
+}
+
+navPips.forEach(pip => pip.addEventListener("click", testfill));
+// document.getElementById("pip2").addEventListener("click", testfill);
