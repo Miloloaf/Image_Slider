@@ -81,7 +81,7 @@
         background-color: rgba(245, 245, 245, 0.322);
         border: 1px solid rgba(20, 20, 20, 0.801);
         height: 50px;
-
+        cursor: pointer;
 
     }
 
@@ -96,7 +96,7 @@
     .navigation{
 
         background-color ;
-        color: rgb(255, 192, 203);
+        color: rgba(255, 192, 203, 0);
         height: 200px;
         width: 2000px;
         position: relative;
@@ -115,13 +115,10 @@
         z-index: 2;
         margin-bottom: 10px;
         transition: 0.5s ease-in-out;
+        cursor: pointer;
     }
     .navPips.filledin{
                 background-color: rgb(190, 190, 190);
-    }
-
-    .filledin {
-        background-color: plum;
     }
 
 </style>
@@ -141,8 +138,8 @@
             <div id="slider"></div>
             <ul class="navigation">
                 <li class="navPips filledin" image-index="1"></li>
-                <li class="navPips" image-index="2" id="pip2"></li>
-                <li class="navPips" image-index="3" id="pip3"></li>
+                <li class="navPips" image-index="2"></li>
+                <li class="navPips" image-index="3"></li>
                 <li class="navPips" image-index="4"></li>
                 <li class="navPips" image-index="5"></li>
             </ul>
